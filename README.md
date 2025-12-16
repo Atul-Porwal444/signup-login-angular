@@ -11,8 +11,7 @@ This is a simple project I built to learn how **Login** and **Signup** work usin
 
 ## 🛠️ Tools Used
 * **Framework:** Angular 19
-* **Styling:** CSS / [Add Bootstrap or Tailwind if you used it]
-* **Backend:** [Add JSON-Server or Firebase if you used it, or "Local Storage"]
+* **Styling:** CSS / Bootstrap
 
 ## 🚀 How to Run the Project
 

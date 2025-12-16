@@ -1,0 +1,78 @@
+<div class="auth-container">
+    <div class="auth-card">
+      
+      <div class="toggle-container">
+        <button 
+          [class.active]="isLoginMode" 
+          (click)="toggleMode(true)">Login</button>
+        <button 
+          [class.active]="!isLoginMode" 
+          (click)="toggleMode(false)">Sign Up</button>
+      </div>
+  
+      @if (isLoginMode) {
+        <div class="form-section fade-in">
+          <h2>Welcome Back</h2>
+          
+          <form>
+            <div class="input-group">
+              <i class="fa-solid fa-envelope icon"></i>
+              <input type="email" placeholder="Email" required>
+            </div>
+  
+            <div class="input-group">
+              <i class="fa-solid fa-lock icon"></i>
+              <input [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" required>
+              <i class="fa-solid" 
+                 [class.fa-eye]="!passwordVisible" 
+                 [class.fa-eye-slash]="passwordVisible"
+                 (click)="togglePassword()" 
+                 class="toggle-eye"></i>
+            </div>
+  
+            <div class="options-row">
+              <label class="remember-me">
+                <input type="checkbox"> Remember me
+              </label>
+              <a href="#" class="forgot-link">Forgot Password?</a>
+            </div>
+  
+            <button type="submit" class="submit-btn">Login</button>
+  
+            <p class="social-text">Or login with</p>
+          </form>
+        </div>
+      } 
+  
+      @else {
+        <div class="form-section fade-in">
+          <h2>Create Account</h2>
+          
+          <form>
+            <div class="input-group">
+              <i class="fa-solid fa-user icon"></i>
+              <input name="fullName" [(ngModel)]="registerObj.fullName" type="text" placeholder="Full Name" required>
+            </div>
+  
+            <div class="input-group">
+              <i class="fa-solid fa-envelope icon"></i>
+              <input name="emailId" [(ngModel)]="registerObj.emailId" type="email" placeholder="Email" required>
+            </div>
+  
+            <div class="input-group">
+              <i class="fa-solid fa-lock icon"></i>
+              <input name="password" [(ngModel)]="registerObj.password" [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" required>
+              <i class="fa-solid" 
+                 [class.fa-eye]="!passwordVisible" 
+                 [class.fa-eye-slash]="passwordVisible"
+                 (click)="togglePassword()" 
+                 class="toggle-eye"></i>
+            </div>
+  
+            <button type="submit" class="submit-btn">Sign Up</button>
+          </form>
+        </div>
+      }
+  
+    </div>
+  </div>
