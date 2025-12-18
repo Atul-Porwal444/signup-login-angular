@@ -11,3 +11,13 @@ export class UserRegister {
         this.password = ""
     }
 }
+
+export class LoginModel {
+    emailId : string;
+    password : string;
+
+    constructor() {
+        this.emailId = ""
+        this.password = ""
+    }
+}

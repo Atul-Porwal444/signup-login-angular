@@ -17,12 +17,12 @@
           <form>
             <div class="input-group">
               <i class="fa-solid fa-envelope icon"></i>
-              <input type="email" placeholder="Email" required>
+              <input name="emailId" [(ngModel)]="loginObj.emailId" type="email" placeholder="Email" required>
             </div>
   
             <div class="input-group">
               <i class="fa-solid fa-lock icon"></i>
-              <input [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" required>
+              <input name="password" [(ngModel)]="loginObj.password" [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" required>
               <i class="fa-solid" 
                  [class.fa-eye]="!passwordVisible" 
                  [class.fa-eye-slash]="passwordVisible"
@@ -37,7 +37,7 @@
               <a href="#" class="forgot-link">Forgot Password?</a>
             </div>
   
-            <button type="submit" class="submit-btn">Login</button>
+            <button type="button" (click)="onLogin()" class="submit-btn">Login</button>
   
             <p class="social-text">Or login with</p>
           </form>
@@ -48,28 +48,37 @@
         <div class="form-section fade-in">
           <h2>Create Account</h2>
           
-          <form>
+          <form #form="ngForm">
             <div class="input-group">
               <i class="fa-solid fa-user icon"></i>
-              <input name="fullName" [(ngModel)]="registerObj.fullName" type="text" placeholder="Full Name" required>
+              <input name="fullName" #name="ngModel" [(ngModel)]="registerObj.fullName" type="text" placeholder="Full Name" required>
+              @if (name.errors?.['required']) {
+                <span class="text-danger">This is required</span>
+              }
             </div>
   
             <div class="input-group">
               <i class="fa-solid fa-envelope icon"></i>
-              <input name="emailId" [(ngModel)]="registerObj.emailId" type="email" placeholder="Email" required>
+              <input name="emailId" #email="ngModel" [(ngModel)]="registerObj.emailId" type="email" placeholder="Email" required>
+              @if (email.errors?.['required']) {
+                <span class="text-danger">This is required</span>
+              }
             </div>
   
             <div class="input-group">
               <i class="fa-solid fa-lock icon"></i>
-              <input name="password" [(ngModel)]="registerObj.password" [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" required>
+              <input name="password" #pwd="ngModel" [(ngModel)]="registerObj.password" [type]="passwordVisible ? 'text' : 'password'" placeholder="Password" required>
               <i class="fa-solid" 
                  [class.fa-eye]="!passwordVisible" 
                  [class.fa-eye-slash]="passwordVisible"
                  (click)="togglePassword()" 
                  class="toggle-eye"></i>
+                 @if (pwd.errors?.['required']) {
+                  <span class="text-danger">This is required</span>
+                }
             </div>
   
-            <button type="submit" class="submit-btn">Sign Up</button>
+            <button type="button" (click)="onRegister()" [disabled]="form.invalid" class="submit-btn">Sign Up</button>
           </form>
         </div>
       }
